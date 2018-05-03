@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 /**
  * Object class for individual roll states.
- * @author Yihan Philip Yao <philipyao@live.ca>
- * @version 0.2
+ * @author Yihan Philip Yao (philipyao@live.ca)
+ * @version 0.3
  * @since 0.1
  */
 
