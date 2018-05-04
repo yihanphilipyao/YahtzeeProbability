@@ -13,20 +13,18 @@ public class Main {
             System.out.print(Arrays.toString(curState.getRepeatedValues()));
             System.out.print(Arrays.toString(curState.getRepeatedSubsets()));
             
-            System.out.printf("%8d/%d\n", curState.getNumerator(), curState.getDenominator());
+            System.out.printf("%8d/%d\n\n", curState.getNumerator(), curState.getDenominator());
         } catch (InvalidArgumentException e) {
             System.out.println(e.getMessage());
         }
         
-        
-        RollState initial = new RollState(5, 6, true);
-		ArrayList<int[]> stateList = initial.getStateList();
+		ArrayList<int[]> stateList = RollState.getStateList(3, 6, false);
 		
 		for (int[] state : stateList) {
 			System.out.print(Arrays.toString(state));
 			
 			try {
-				ProbabilityState curState = new ProbabilityState(5, 6, initial.isFirstRoll(), state);
+				ProbabilityState curState = new ProbabilityState(3, 6, false, state);
 
 				System.out.print(Arrays.toString(curState.getRepeatedValues()));
 				System.out.print(Arrays.toString(curState.getRepeatedSubsets()));
@@ -36,6 +34,11 @@ public class Main {
 				System.out.println(e.getMessage());
 			}
 		}
+		
+		ProbabilitySet probabilitySet = new ProbabilitySet(5, 3, 6);
+		System.out.println(Arrays.toString(probabilitySet.getProbabilitySet()));
+		
+		
 
 	}
 

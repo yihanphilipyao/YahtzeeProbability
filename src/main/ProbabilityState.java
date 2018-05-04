@@ -3,9 +3,9 @@ package main;
 import java.util.Arrays;
 
 /**
- * Object class for individual roll states.
+ * Object class for individual roll states and their probabilities.
  * @author Yihan Philip Yao (philipyao@live.ca)
- * @version 0.3
+ * @version 0.4
  * @since 0.1
  */
 
@@ -27,7 +27,8 @@ public class ProbabilityState {
 	 * @param numOfFaces Number of faces per die.
 	 * @param firstRoll If the current roll is the initial roll (changes probability calculations).
 	 * @param sequence The sequence of numbers which represent the state of the dice.
-	 * @throws InvalidArgumentException Validation checks for <code>sequence</code> matching <code>numOfDice</code> and <code>numOfFaces</code>.
+	 * @throws InvalidArgumentException Validation checks for <code>sequence</code> matching
+	 * 			<code>numOfDice</code> and <code>numOfFaces</code>.
 	 */
 	
 	public ProbabilityState(int numOfDice, int numOfFaces, boolean firstRoll, int[] sequence) throws InvalidArgumentException {
@@ -122,15 +123,15 @@ public class ProbabilityState {
 	}
 	
 	/**
-	 * Calculates numerator of probability such that rolls of the same <code>numOfDice</code> and <code>numOfFaces</code> have common denominator.
+	 * Calculates numerator of probability such that rolls of the same <code>numOfDice</code> and
+	 * <code>numOfFaces</code> have common denominator.
 	 * <p>
-	 * Calculates according to n!/[(A!B!C!...!)*(a!b!c!...!)] * (f-1)!/(r-n+f)! for first
-	 * roll and n!/[(A!B!C!...!)*(a!b!c!...!)] * (f-1)!/(r-n+f-1)! for other rolls, where
-	 * n represents the number of dice, A,B,C... represent the number of times an item is
-	 * repeated in the set, a,b,c... represent the number of identically sized subsets in
-	 * the set, f represents the number of faces per die, and r represents the number of
-	 * repeated items (excluding the initial unique item and for subsequent rolls, all
-	 * desired items).
+	 * Calculates according to n!/[(A!B!C!...!)*(a!b!c!...!)] * (f-1)!/(r-n+f)! for first roll and
+	 * n!/[(A!B!C!...!)*(a!b!c!...!)] * (f-1)!/(r-n+f-1)! for other rolls, where n represents the number of
+	 * dice, A,B,C... represent the number of times an item is repeated in the set, a,b,c... represent the
+	 * number of identically sized subsets in the set, f represents the number of faces per die, and r
+	 * represents the number of repeated items (excluding the initial unique item and for subsequent rolls,
+	 * all desired items).
 	 * @since 0.1
 	 * 
 	 * @return Integer numerator for probability of roll.
