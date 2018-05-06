@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Object class for individual roll states and their probabilities.
  * @author Yihan Philip Yao (philipyao@live.ca)
- * @version 0.4
+ * @version 0.5
  * @since 0.1
  */
 

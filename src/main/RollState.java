@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * Class for finding all roll states for a certain number of dice and faces.
  * @author Yihan Philip Yao (philipyao@live.ca)
- * @version 0.4
+ * @version 0.5
  * @since 0.3
  */
 

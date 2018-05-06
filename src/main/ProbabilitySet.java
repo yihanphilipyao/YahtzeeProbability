@@ -6,13 +6,14 @@ import java.util.Arrays;
 /**
  * Object class for finding the probability set for the Markov chain
  * @author Yihan Philip Yao (philipyao@live.ca)
- * @version 0.4
+ * @version 0.5
  * @since 0.4
  */
 
 public class ProbabilitySet {
 	
 	private long[] probabilitySet;
+	private long denominator;
 	private ArrayList<int[]> stateList;
 	private ProbabilityState[] probabilityList;
 	
@@ -33,6 +34,8 @@ public class ProbabilitySet {
 		probabilitySet = new long[remainingNumOfDice+1];
 		Arrays.fill(probabilitySet, 0);
 		
+		long probabilityCheck = 0;
+		
 		for (int[] state : stateList) {
 			try {
 				ProbabilityState curState = new ProbabilityState(remainingNumOfDice, numOfFaces, firstRoll, state);
@@ -45,7 +48,9 @@ public class ProbabilitySet {
 				if (index == 1 && firstRoll) {
 					index = 0;
 				}
-				probabilitySet[index] += curState.getNumerator();
+				long numerator = curState.getNumerator();
+				probabilitySet[index] += numerator;
+				probabilityCheck += numerator;
 			
 				probabilityList[stateList.indexOf(state)] = curState;
 			} catch(InvalidArgumentException e) {
@@ -57,6 +62,14 @@ public class ProbabilitySet {
 			
 		}
 		
+		denominator = probabilityList[0].getDenominator();
+		
+		if (probabilityCheck != denominator) {
+			probabilitySet = null;
+			stateList = null;
+			probabilityList = null;
+			System.out.println("Something went wrong");
+		}
 	}
 	
 	/**
@@ -66,10 +79,23 @@ public class ProbabilitySet {
 	 * based on the most prevalent value in the non-initial state if they are more than the previous roll.
 	 * @since 0.4
 	 * 
-	 * @return Array of probability numerators with indexes corresponding to increase in desired dice.
+	 * @return Array of probabilities with indexes corresponding to increase in desired dice.
 	 */
 	
-	public long[] getProbabilitySet() {
+	public double[] getProbabilitySet() {
+		double[] probabilitySetReal = new double[probabilitySet.length];
+		for (int i = 0; i < probabilitySet.length; i++) {
+			probabilitySetReal[i] = (double) probabilitySet[i] / denominator;
+		}
+		return probabilitySetReal;
+	}
+	
+	/**
+	 * @return Array of probability numerators with indexes corresponding to increase in desired dice.
+	 * @since 0.5
+	 */
+	
+	public long[] getIntegerProbabilitySet() {
 		return probabilitySet;
 	}
 	

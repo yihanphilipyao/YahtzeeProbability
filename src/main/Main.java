@@ -36,9 +36,10 @@ public class Main {
 		}
 		
 		ProbabilitySet probabilitySet = new ProbabilitySet(5, 3, 6);
-		System.out.println(Arrays.toString(probabilitySet.getProbabilitySet()));
+		System.out.println(Arrays.toString(probabilitySet.getIntegerProbabilitySet()));
 		
-		
+		MarkovStateMachine markovState = new MarkovStateMachine(5, 6, 3);
+		System.out.println(Arrays.deepToString(markovState.getMarkovMatrix()));
 
 	}
 
